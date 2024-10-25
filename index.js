@@ -6,7 +6,7 @@ const error404 = document.querySelector('.not-found');
 const input = document.querySelector('.search-box input');
 const snackbar = document.getElementById('snackbar');
 
-const APIKey = 'SUA API KEY';
+const APIKey = 'cc6a4ff0f6c65302301f946332330816';
 const LANG = 'pt_br';
 
 // Função para mostrar a Snackbar
@@ -28,13 +28,9 @@ function getWeather() {
     }
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}&lang=${LANG}`)
-        .then(response => {
-            if (!response.ok) { // Verifica se a resposta não é ok
-                throw new Error('Erro na requisição.'); // Lança um erro
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(json => {
+            
             if (json.cod === '404') {
                 container.style.height = '400px';
                 weatherBox.style.display = 'none';
